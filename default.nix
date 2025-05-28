@@ -3,7 +3,7 @@
 {
   imports = [ 
     ./hacks.nix
-    ./home-manager.nix
+#    ./home.nix
     ./hyprland.nix
     ./starship.nix
   ];

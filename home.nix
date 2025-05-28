@@ -1,14 +1,17 @@
 { config, pkgs, ... }:
-
+let
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz;
+in
 {
-  imports = [ (import "${pkgs.home-manager}/nixos") ];
+  imports = [ (import "${home-manager}/nixos") ];
   environment.systemPackages = with pkgs; [
-    home-manager
+    # home-manager
     # my packages
     jetbrains.pycharm-professional
   ];
 
   users.users.ysharma.isNormalUser = true;
+  home-manager.backupFileExtension = "backup";
   home-manager.users.ysharma = { pkgs, ... }: {
     home.packages = [ pkgs.atool pkgs.httpie ];
     home.shellAliases = {
