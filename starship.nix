@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = if (pkgs.lib.versionAtLeast pkgs.lib.version "25.05") then (builtins.filter pkgs.lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) else [pkgs.nerdfonts];
 
   programs.starship = {
     enable = true;
